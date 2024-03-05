@@ -1,6 +1,6 @@
 # Find The One
 
-**Proje Tanımı**: Find the one isimli web sitemiz bir tanışma web uygulamasıdır. İnsanlar kendilerine bir profil oluşturarak, sitedeki kayıtlı diğer kullanıcıların profillerini görür ve isterlerse karşısına çıkan diğer insanların profil kartlarını görüp, beğenebilir. Eğer beğendikleri kullanıcı da onları görüp beğenirse, artık kullanıcılar etkileşime geçebilir, birbirlerine mesaj gönderebilir ve tanışabilirler!
+**Proje Tanımı**: Find the one isimli web sitemiz bir tanışma web uygulamasıdır. İnsanlar kendilerine bir profil oluşturarak, sitedeki kayıtlı diğer kullanıcıların profillerini görür ve isterlerse bu insanları beğenebilirler. Eğer beğendikleri kullanıcı da onları görüp beğenirse, artık kullanıcılar etkileşime geçebilir, birbirlerine mesaj gönderebilir ve tanışabilirler!
 
 **Proje Kategorisi**: Sosyal medya
 
