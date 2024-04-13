@@ -8,18 +8,18 @@
 
 4. **Hesabı Silebilme**: Kullanıcılar istedikleri zaman oluşturdukları hesabı silebilir.
 
-5. **Kullanicilari cinsiyete göre getirme**: Kullanicilar, kayit olurlarken sectikleri tercihlere göre diger kullanicilarin profillerini anasayfalarının "keşfet" bölümünde görürler.
+5. **Cinsiyete göre getirme**: Kullanicilar, kayit olurlarken sectikleri tercihlere göre diger kullanicilarin profillerini anasayfalarının "keşfet" bölümünde görürler.
 
-6. **Kullanicilari yas araligina göre getirme**: Kullanicilar, belirli bir yas araligi secerek önüne cikan diger kullanicilari filtreleyebilirler.
+6. **Yas araligina göre getirme**: Kullanicilar, belirli bir yas araligi secerek önüne cikan diger kullanicilari filtreleyebilirler.
 
-7. **Diğer kullanicilari beğenebilme**: Kullanicilar, gördükleri diger kullanicilarin profillerini "kalp" tuşuna basarak veya kullanıcı kartını "sağa kaydırarak" beğenebilir, eğer karşı kullanıcı da onları beğenirse artık "eşleştiğim insanlar" kısmında birbirlerini görebilirler.
+7. **Kullanicilari beğenebilme**: Kullanicilar, gördükleri diger kullanicilarin profillerini "kalp" tuşuna basarak veya kullanıcı kartını "sağa kaydırarak" beğenebilir, eğer karşı kullanıcı da onları beğenirse artık "eşleştiğim insanlar" kısmında birbirlerini görebilirler.
 
-8. **Diğer kullanicilari beğenmeme**: Eğer kullanıcı, karşısına çıkan diğer bir kullanıcıyı beğenmezse, "çarpı" tuşuna basabilir veya kullanıcı kartını "sola kaydırabilir". Artık o kullanıcı ile bir eşleşme şansı kalmaz ve o kullanıcı bir daha karşısına çıkmaz.
+8. **Kullanicilari beğenmeme**: Eğer kullanıcı, karşısına çıkan diğer bir kullanıcıyı beğenmezse, "çarpı" tuşuna basabilir veya kullanıcı kartını "sola kaydırabilir". Artık o kullanıcı ile bir eşleşme şansı kalmaz ve o kullanıcı bir daha karşısına çıkmaz.
 
 9. **Eşleşme Gerçekleşmesi**: Eğer 2 kullanici da birbirini beğenirse, artık "eşleştiğim insanlar" kısmında birbirlerinin profillerini görebilir, etkileşimde bulunabilirler.
 
 10. **Mesaj Gönderebilme**: Eğer ki 2 kullanıcı birbirini beğenmişse ve birbirlerinin "eşleştiğim insanlar" listesinde bulunuyorlarsa, artık birbirlerine mesaj gönderebilirler.
 
-11. **Etkileşim İstatistiklerini Görüntüleyebilme**: Kullanıcılar, onlari toplamda kaç kisinin begendigini veya kendisinin toplamda kac kisiyi begendigini "istatistiklerim" bölümünden görüntüleyebilir.
+11. **İstatistiklerini Görüntüleyebilme**: Kullanıcılar, onlari toplamda kaç kisinin begendigini veya kendisinin toplamda kac kisiyi begendigini "istatistiklerim" bölümünden görüntüleyebilir.
 
 12. **Kişileri Silebilme**: Kullanıcılar, eşleştiği kişileri "eşleştiğim insanlar" listesinden silebilir ve sildikten sonra artık birbirlerine mesaj gönderemezler.
