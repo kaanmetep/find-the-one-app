@@ -133,8 +133,8 @@ function Advanced() {
         </button>
       </div>
       {lastDirection ? (
-        <h2 key={lastDirection} className="text-center mt-4">
-          You swiped {lastDirection}
+        <h2 key={lastDirection} className="text-center mt-4 font-bold">
+          You swiped {lastDirection}!
         </h2>
       ) : (
         ""

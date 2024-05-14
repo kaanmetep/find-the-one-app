@@ -12,8 +12,8 @@ function AuthProvider({ children }) {
     firstName: "",
     lastName: "",
     birthDate: "",
-    gender: "",
-    genderPreference: "",
+    gender: "man",
+    genderPreference: "woman",
     about: "",
     photo: "",
   });

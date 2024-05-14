@@ -1,6 +1,6 @@
 function Statistics() {
   return (
-    <div className="flex justify-center mt-12  h-full">
+    <div className="flex justify-center mt-4 md:mt-12  h-full">
       <div className="flex flex-col gap-12 font-semibold">
         <div className="flex justify-center">
           <h2 className="text-center uppercase tracking-widest border-b-2 border-b-black pb-2 w-2/3">

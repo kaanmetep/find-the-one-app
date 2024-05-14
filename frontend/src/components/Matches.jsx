@@ -42,7 +42,7 @@ function Matches() {
 
 function Match({ matchObj }) {
   return (
-    <li className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 rounded-lg p-1 cursor-pointer tracking-wide">
+    <li className="flex items-center gap-2 bg-gradient-to-r from-red-50 to-red-100 rounded-lg p-1 cursor-pointer tracking-wide  border-l-4 border-red-500">
       <img src={matchObj.avatar} alt="Avatar" className="w-8 rounded-full" />
       <p>{matchObj.firstName}</p>
     </li>

@@ -52,6 +52,7 @@ function LogInPopUp() {
             onClick={(e) => {
               e.preventDefault();
               navigate("dashboard");
+              onSetShowLogInPopUp(false);
             }}
           >
             Log in

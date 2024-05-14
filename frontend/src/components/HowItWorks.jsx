@@ -2,11 +2,11 @@ import SectionHeading from "./SectionHeading";
 function HowItWorks() {
   return (
     <div className="container mx-auto px-4 mb-24" id="howitworks">
-      <SectionHeading>How it Works</SectionHeading>
+      <SectionHeading>How it works</SectionHeading>
       <div className="grid grid-cols-2 grid-rows-3 gap-y-6 mt-16">
         <div className="col-span-full md:col-span-1">
-          <span className="text-4xl block mb-3">
-            <span className="bg-gradient-to-r from-red-50 to-red-300 px-2 mr-1">
+          <span className="text-2xl md:text-4xl block mb-3">
+            <span className="bg-gradient-to-r from-red-50 to-red-300 px-2 mr-1 ">
               swipe right
             </span>
             someone you like
@@ -20,7 +20,7 @@ function HowItWorks() {
           </p>
         </div>
         <div className=" md:row-start-2 md:col-start-2 col-span-full">
-          <span className="text-4xl block mb-3">
+          <span className="text-2xl md:text-4xl block mb-3">
             get a
             <span className="bg-gradient-to-r from-red-50 to-red-300 px-2 ml-1">
               match
@@ -35,7 +35,7 @@ function HowItWorks() {
           </p>
         </div>
         <div className="md:row-start-3 md:col-span-1 col-span-full">
-          <span className="text-4xl block mb-3">
+          <span className="text-2xl md:text-4xl block mb-3">
             <span className="bg-gradient-to-r from-red-50 to-red-300 px-2 mr-1">
               send
             </span>

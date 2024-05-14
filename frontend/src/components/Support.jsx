@@ -1,7 +1,17 @@
 import SectionHeading from "./SectionHeading";
 import InputElement from "./InputElement";
 import Button from "./Button";
+import { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
 function Support() {
+  const {
+    supFirstName,
+    supEmail,
+    supMessage,
+    onSetSupFirstName,
+    onSetSupEmail,
+    onSetSupMessage,
+  } = useContext(AppContext);
   return (
     <div
       className="container mx-auto  flex flex-col items-center shadow-lg p-12 pt-6 mb-24 rounded-lg bg-gradient-to-r from-red-50 to-red-300"
@@ -15,17 +25,31 @@ function Support() {
       <form action="" className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr,3fr] gap-4 ">
           <label htmlFor="name">Name:</label>
-          <InputElement placeholder="Enter your name" />
+          <InputElement
+            placeholder="Enter your name"
+            value={supFirstName}
+            onChange={(e) => onSetSupFirstName(e.target.value)}
+          />
         </div>
         <div className="grid grid-cols-[1fr,3fr] gap-4">
           <label htmlFor="email">Email:</label>
-          <InputElement placeholder="Enter your e-mail" />
+          <InputElement
+            placeholder="Enter your e-mail"
+            value={supEmail}
+            onChange={(e) => onSetSupEmail(e.target.value)}
+          />
         </div>
         <div className="grid grid-cols-[1fr,3fr] gap-4 mb-2">
           <label htmlFor="message" className="self-center">
             Your message:
           </label>
-          <InputElement py={4} placeholder="Enter your message" />
+          <InputElement
+            py={4}
+            placeholder="Enter your message"
+            value={supMessage}
+            onChange={(e) => onSetSupMessage(e.target.value)}
+            w={80}
+          />
         </div>
         <Button>Send</Button>
       </form>

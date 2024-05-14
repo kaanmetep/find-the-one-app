@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function DashboardNav() {
+  const navigate = useNavigate();
   return (
     <nav>
       <ul className="flex gap-4 font-semibold text-sm sm:text-base items-center">
@@ -18,7 +19,7 @@ function DashboardNav() {
             View Statistics
           </li>
         </Link>
-        <li>
+        <li onClick={() => navigate("/")}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

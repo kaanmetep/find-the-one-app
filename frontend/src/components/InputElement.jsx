@@ -11,7 +11,7 @@ function InputElement({
     <input
       type={type}
       placeholder={placeholder}
-      className={`shadow-lg border-2 border-red-200 px-2 rounded-md py-${py} placeholder:text-xs w-36 focus:w-40 sm:w-56 sm:focus:w-60
+      className={`shadow-lg border-2 border-red-200 px-2 rounded-md py-${py} placeholder:text-xs  sm:w-80 sm:focus:w-[340px]
       transition-all duration-300 focus:outline-none
       focus:ring
       focus:ring-red-400
@@ -20,6 +20,7 @@ function InputElement({
       value={value}
       onChange={onChange}
       name={name}
+      required
     />
   );
 }
