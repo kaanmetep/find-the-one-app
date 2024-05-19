@@ -12,6 +12,10 @@ mongoose
   .connect(process.env.DATABASE)
   .then(console.log("db connection is succesfull"));
 
+app.get("/", (req, res) => {
+  res.json("hello");
+});
+
 app.get("/api/v1/users", userController.getAllUsers);
 
 app.get("/api/v1/user/:id", userController.getUser);
