@@ -7,11 +7,11 @@ function Testimonials() {
           Sean & Marianna
         </span>
         <p>
-          After going on a few dates and having a few fun nights I came across
-          Miranda. After reading her profile I couldn’t resist swiping right
-          after reading her final sentence... ‘Looking for my super babe for
-          life.’ After talking for about a week we went out on our first date
-          and I knew there was something special about her!
+          After a few enjoyable dates and some fun nights out, I came across
+          Sean. His profile caught my eye, especially his closing line: 'Seeking
+          my partner in crime.' After chatting for about a week, we decided to
+          go on our first date, and I immediately felt a special connection with
+          him!
         </p>
       </TestimonialItem>
       <TestimonialItem>
@@ -19,11 +19,11 @@ function Testimonials() {
           Jack & Allison
         </span>
         <p>
-          After going on a few dates and having a few fun nights I came across
-          Miranda. After reading her profile I couldn’t resist swiping right
-          after reading her final sentence... ‘Looking for my super babe for
-          life.’ After talking for about a week we went out on our first date
-          and I knew there was something special about her!
+          After a series of enjoyable dates and fun nights out, I stumbled upon
+          Allison. Her profile caught my attention immediately, especially her
+          closing line: 'Searching for my forever adventure partner.' After
+          chatting for about a week, we finally met for our first date, and I
+          felt an instant connection with her!
         </p>
       </TestimonialItem>
       <TestimonialItem>
@@ -31,11 +31,11 @@ function Testimonials() {
           Marry & Chris
         </span>
         <p>
-          After going on a few dates and having a few fun nights I came across
-          Miranda. After reading her profile I couldn’t resist swiping right
-          after reading her final sentence... ‘Looking for my super babe for
-          life.’ After talking for about a week we went out on our first date
-          and I knew there was something special about her!
+          Following a few exciting dates and memorable evenings, I encountered
+          Chris. His profile intrigued me, especially his closing words: 'Hoping
+          to find my partner in crime.' After chatting for about a week, we
+          decided to meet up for our first date, and I could sense there was
+          something extraordinary about him!
         </p>
       </TestimonialItem>
     </div>

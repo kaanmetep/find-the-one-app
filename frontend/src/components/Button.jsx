@@ -3,11 +3,13 @@ function Button({
   children,
   bgcolor = "bg-white",
   textcolor = "text-black",
+  disabled = false,
 }) {
   return (
     <button
       onClick={onClick}
       className={`${bgcolor} ${textcolor} lg:py-3 lg:px-8 py-2 px-6 text-sm lg:text-base rounded-2xl uppercase tracking-wide font-bold hover:shadow-xl hover:font-extrabold transition-all delay-[50ms]`}
+      disabled={disabled}
     >
       {children}
     </button>

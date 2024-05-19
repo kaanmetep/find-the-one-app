@@ -9,53 +9,58 @@ function Safety() {
         Your safety is more important than anything!
       </SectionHeading>
       <p className="text-sm mb-3">
-        Meeting new people is exciting, but you should always be cautious when
-        interacting with someone you don’t know. Use your best judgment and put
-        your safety first, whether you are exchanging initial messages or
-        meeting in person. While you can’t control the actions of others, there
-        are things you can do to help you stay safe during your Tinder
-        experience.
+        Meeting new individuals is an invigorating experience, yet it's
+        essential to approach interactions with caution, especially when
+        engaging with unfamiliar faces. Trust your instincts and prioritize your
+        safety, whether you're exchanging initial communications or arranging
+        in-person meetings. While you can't predict the behavior of others,
+        there are proactive measures you can take to ensure your safety while
+        expanding your social circle.
       </p>
       <h3 className="font-semibold mr-auto mb-2">Online Safety</h3>
       <ul className=" mr-auto flex flex-col gap-3">
         <li>
           <span className="text-slate-400 block mb-1">
-            Never Send Money or Share Financial Information
+            Avoid Sharing Financial Information Online
           </span>
           <p className="text-sm">
-            Never send money, especially over wire transfer, even if the person
-            claims to be in an emergency. Wiring money is like sending cash —
-            it’s nearly impossible to reverse the transaction or trace where the
-            money went. Never share information that could be used to access
-            your financial accounts. If another user asks you for money, report
-            it to us immediately.
+            It's essential to prioritize your safety and financial security
+            while engaging online. Never send money, especially via wire
+            transfer, even if the other person claims to be in an emergency.
+            Sending money this way is akin to sending cash—it's extremely
+            difficult to reverse the transaction or track where the money ends
+            up. Additionally, never disclose information that could grant access
+            to your financial accounts. If another user requests money from you,
+            please report it to us promptly for assistance.
           </p>
         </li>
         <li>
           <span className="text-slate-400 block mb-1">
-            Protect Your Personal Information
+            Personal Information Security
           </span>
           <p className="text-sm">
-            Never share personal information, such as your social security
-            number, home or work address, or details about your daily routine
-            (e.g., that you go to a certain gym every Monday) with people you
-            don’t know. If you are a parent, limit the information that you
-            share about your children on your profile and in early
-            communications. Avoid sharing details such as your children’s names,
-            where they go to school, or their ages or genders.
+            Avoid disclosing personal details, such as your social security
+            number, home or work address, or specific aspects of your daily
+            routine (like frequenting a certain gym on Mondays), to individuals
+            you're unfamiliar with. If you're a parent, exercise caution in
+            sharing information about your children in your profile or initial
+            communications. Refrain from revealing details like your children's
+            names, school locations, or ages and genders to protect their
+            privacy and safety.
           </p>
         </li>
         <li>
           <span className="text-slate-400 block mb-1">
-            Be Wary of Long Distance and Overseas Relationships
+            Approach Long-Distance and Overseas Relationships with Caution
           </span>
           <p className="text-sm">
-            Watch out for scammers who claim to be from your country but stuck
-            somewhere else, especially if they ask for financial help to return
-            home. Be wary of anyone who will not meet in person or talk on a
-            phone/video call—they may not be who they say they are. If someone
-            is avoiding your questions or pushing for a serious relationship
-            without meeting or getting to know you first — that’s a red flag.
+            Be cautious of individuals who claim to be from your country but are
+            allegedly stuck somewhere else, particularly if they request
+            financial assistance to return home. Exercise vigilance with anyone
+            unwilling to meet in person or engage in a phone/video call, as they
+            may not be who they claim to be. If someone avoids answering your
+            questions or rushes into a serious relationship without proper
+            communication or meetings, consider this a red flag.
           </p>
         </li>
         <li>

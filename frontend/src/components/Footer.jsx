@@ -1,4 +1,3 @@
-import MainLogo from "./MainLogo";
 function Footer() {
   return (
     <div className="border-top border-red-400 border-t-2 mb-4 pt-4 text-sm">

@@ -32,7 +32,7 @@ const tempData = [
 
 function Matches() {
   return (
-    <ul className="mt-6 flex flex-col gap-6">
+    <ul className="mt-6 flex flex-col gap-6 ">
       {tempData.map((match) => (
         <Match matchObj={match} key={match.id} />
       ))}

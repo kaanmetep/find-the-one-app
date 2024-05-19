@@ -6,12 +6,13 @@ function InputElement({
   value = "",
   onChange,
   name = "",
+  accept = "",
 }) {
   return (
     <input
       type={type}
       placeholder={placeholder}
-      className={`shadow-lg border-2 border-red-200 px-2 rounded-md py-${py} placeholder:text-xs  sm:w-80 sm:focus:w-[340px]
+      className={`shadow-lg border-2 border-red-200 px-2 rounded-md py-${py} placeholder:text-xs w-40 md:w-80 md:focus:w-[340px]
       transition-all duration-300 focus:outline-none
       focus:ring
       focus:ring-red-400
@@ -20,7 +21,8 @@ function InputElement({
       value={value}
       onChange={onChange}
       name={name}
-      required
+      accept={accept}
+      maxLength={36}
     />
   );
 }

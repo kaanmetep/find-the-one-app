@@ -1,8 +1,7 @@
 import SectionHeading from "./SectionHeading";
 import InputElement from "./InputElement";
 import Button from "./Button";
-import { useContext } from "react";
-import { AppContext } from "../contexts/AppContext";
+import { useApp } from "../hooks/useApp";
 function Support() {
   const {
     supFirstName,
@@ -11,7 +10,7 @@ function Support() {
     onSetSupFirstName,
     onSetSupEmail,
     onSetSupMessage,
-  } = useContext(AppContext);
+  } = useApp();
   return (
     <div
       className="container mx-auto  flex flex-col items-center shadow-lg p-12 pt-6 mb-24 rounded-lg bg-gradient-to-r from-red-50 to-red-300"
@@ -23,7 +22,7 @@ function Support() {
       </div>
 
       <form action="" className="flex flex-col gap-4">
-        <div className="grid grid-cols-[1fr,3fr] gap-4 ">
+        <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] gap-4 ">
           <label htmlFor="name">Name:</label>
           <InputElement
             placeholder="Enter your name"
@@ -31,7 +30,7 @@ function Support() {
             onChange={(e) => onSetSupFirstName(e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-[1fr,3fr] gap-4">
+        <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] gap-4">
           <label htmlFor="email">Email:</label>
           <InputElement
             placeholder="Enter your e-mail"
@@ -39,7 +38,7 @@ function Support() {
             onChange={(e) => onSetSupEmail(e.target.value)}
           />
         </div>
-        <div className="grid grid-cols-[1fr,3fr] gap-4 mb-2">
+        <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] gap-4 mb-2">
           <label htmlFor="message" className="self-center">
             Your message:
           </label>

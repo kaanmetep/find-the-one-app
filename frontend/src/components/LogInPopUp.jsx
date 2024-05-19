@@ -1,26 +1,30 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputElement from "./InputElement";
 import SectionHeading from "./SectionHeading";
 import Button from "./Button";
-import { AppContext } from "../contexts/AppContext";
-import { AuthContext } from "../contexts/AuthContext";
+import { useApp } from "../hooks/useApp";
+import { useAuth } from "../hooks/useAuth";
+import Spinner from "./Spinner";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 function LogInPopUp() {
-  const { onSetShowLogInPopUp } = useContext(AppContext);
-  const { userEmail, userPassword, onSetUserEmail, onSetUserPassword } =
-    useContext(AuthContext);
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (!e.target.closest(".popup")) {
-        onSetShowLogInPopUp(false);
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  });
+  const { onSetShowLogInPopUp } = useApp();
+  const {
+    currUser,
+    onHandleCurrUser,
+    login,
+    isAuthenticated,
+    loginError,
+    isLoading,
+  } = useAuth();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+      onSetShowLogInPopUp(false);
+    }
+  }, [isAuthenticated, navigate, onSetShowLogInPopUp]);
+  useOutsideClick(onSetShowLogInPopUp);
   return (
     <div className=" fixed top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center z-[100]   inset-0 backdrop-blur-sm bg-opacity-50 ">
       <div className="shadow-2xl bg-white px-12 pb-10 pt-4 rounded-md flex flex-col items-center relative popup ">
@@ -29,21 +33,23 @@ function LogInPopUp() {
           <SectionHeading>Log In</SectionHeading>
         </div>
         <form className="flex flex-col gap-6">
-          <div className="grid grid-cols-[1fr,3fr] items-center gap-2">
+          <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] items-center gap-2 ">
             <label htmlFor="name">E-mail:</label>
             <InputElement
               placeholder="Enter your e-mail"
-              value={userEmail}
-              onChange={(e) => onSetUserEmail(e.target.value)}
+              name="currUserEmail"
+              value={currUser.currUserEmail}
+              onChange={onHandleCurrUser}
             />
           </div>
-          <div className="grid grid-cols-[1fr,3fr] items-center mb-2 gap-2">
+          <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] items-center mb-2 gap-2 ">
             <label htmlFor="name">Password:</label>
             <InputElement
               type="password"
               placeholder="Enter your passsword"
-              value={userPassword}
-              onChange={(e) => onSetUserPassword(e.target.value)}
+              value={currUser.currUserPassword}
+              onChange={onHandleCurrUser}
+              name="currUserPassword"
             />
           </div>
           <Button
@@ -51,12 +57,20 @@ function LogInPopUp() {
             textcolor="text-white"
             onClick={(e) => {
               e.preventDefault();
-              navigate("dashboard");
-              onSetShowLogInPopUp(false);
+              login();
             }}
           >
             Log in
           </Button>
+          {isLoading ? (
+            <div className="flex justify-center">
+              <Spinner />
+            </div>
+          ) : (
+            <p className="text-center text-red-600 uppercase">{`${
+              loginError && loginError + "!"
+            }`}</p>
+          )}
         </form>
         <button
           className="absolute right-3 top-3 aspect-auto  text-slate-400  rounded-full text-lg flex items-center justify-center hover:text-slate-700 transition-all delay-[50ms] font-bold"

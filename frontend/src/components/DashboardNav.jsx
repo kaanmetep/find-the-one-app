@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 function DashboardNav() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   return (
     <nav>
       <ul className="flex gap-4 font-semibold text-sm sm:text-base items-center">
@@ -19,7 +21,12 @@ function DashboardNav() {
             View Statistics
           </li>
         </Link>
-        <li onClick={() => navigate("/")}>
+        <li
+          onClick={() => {
+            logout();
+            navigate("/");
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

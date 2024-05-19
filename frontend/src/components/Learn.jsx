@@ -12,17 +12,17 @@ function Learn() {
         So, Why Choose A Dating App Like Find the One?
       </SectionHeading>
       <p className="text-sm mb-8">
-        When it comes to dating apps, you’ve got options: Badoo, Bumble, Hinge,
-        Match, POF, OKCupid, and many more. It doesn’t matter if you want to
-        find love, a date, or just have a casual chat, you still want to find an
-        app that’s the right match for you. And it’s not always black and white
-        — when you want to meet new people, your friends at Tinder can help you
-        out with features designed to make the impossible possible.
+        In the realm of dating apps, the choices are vast and diverse. Whether
+        you're seeking genuine connections, memorable dates, or simply enjoyable
+        conversations, finding the ideal app is key. However, making the right
+        choice can be nuanced — when you're ready to expand your social horizons
+        and meet new people, "Find the One" stands out with innovative features
+        designed to make meaningful connections a reality.
         <br />
         <span className="block mt-4">
           Dating online just got easier. We won’t brag about being the best free
-          site — we’ll let you decide for yourself by giving you Tinder at a
-          glance.
+          site — we’ll let you decide for yourself by giving you Find the One at
+          a glance.
         </span>
       </p>
       <Testimonials />

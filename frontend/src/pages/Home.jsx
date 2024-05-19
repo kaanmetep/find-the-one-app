@@ -1,7 +1,8 @@
 import { Link } from "react-scroll";
 import { useScrollToTop } from "../hooks/useScrollToTop";
-import { AppContext } from "../contexts/AppContext";
-import { useContext } from "react";
+import { useApp } from "../hooks/useApp";
+import { useAuth } from "../hooks/useAuth";
+import { useEffect } from "react";
 import Main from "../components/Main";
 import Learn from "../components/Learn";
 import Safety from "../components/Safety";
@@ -11,7 +12,13 @@ import Footer from "../components/Footer";
 import LogInPopUp from "../components/LogInPopUp";
 function Home() {
   const { showButton } = useScrollToTop();
-  const { showLogInPopUp } = useContext(AppContext);
+  const { showLogInPopUp } = useApp();
+  const { onSetIsAuthenticated } = useAuth();
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      onSetIsAuthenticated(true);
+    }
+  }, [onSetIsAuthenticated]);
   return (
     <div>
       <Main />
