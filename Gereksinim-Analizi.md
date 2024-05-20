@@ -18,8 +18,6 @@
 
 9. **Eşleşme Gerçekleşmesi**: Eğer 2 kullanici da birbirini beğenirse, artık "eşleştiğim insanlar" kısmında birbirlerinin profillerini görebilir, etkileşimde bulunabilirler.
 
-10. **Mesaj Gönderebilme**: Eğer ki 2 kullanıcı birbirini beğenmişse ve birbirlerinin "eşleştiğim insanlar" listesinde bulunuyorlarsa, artık birbirlerine mesaj gönderebilirler.
+10. **İstatistiklerini Görüntüleyebilme**: Kullanıcılar, onlari toplamda kaç kisinin begendigini veya kendisinin toplamda kac kisiyi begendigini "istatistiklerim" bölümünden görüntüleyebilir.
 
-11. **İstatistiklerini Görüntüleyebilme**: Kullanıcılar, onlari toplamda kaç kisinin begendigini veya kendisinin toplamda kac kisiyi begendigini "istatistiklerim" bölümünden görüntüleyebilir.
-
-12. **Kişileri Silebilme**: Kullanıcılar, eşleştiği kişileri "eşleştiğim insanlar" listesinden silebilir ve sildikten sonra artık birbirlerine mesaj gönderemezler.
+11. **Kişileri Silebilme**: Kullanıcılar, eşleştiği kişileri "eşleştiğim insanlar" listesinden silebilir.
