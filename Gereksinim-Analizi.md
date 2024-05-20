@@ -20,4 +20,4 @@
 
 10. **İstatistiklerini Görüntüleyebilme**: Kullanıcılar, onlari toplamda kaç kisinin begendigini veya kendisinin toplamda kac kisiyi begendigini "istatistiklerim" bölümünden görüntüleyebilir.
 
-11. **Kişileri Silebilme**: Kullanıcılar, eşleştiği kişileri "eşleştiğim insanlar" listesinden silebilir ve sildikten sonra artık birbirlerine mesaj gönderemezler.
+11. **Kişileri Silebilme**: Kullanıcılar, eşleştiği kişileri "eşleştiğim insanlar" listesinden silebilir.
