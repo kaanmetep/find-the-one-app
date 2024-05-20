@@ -2,12 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "../config.env" });
 const app = express();
 app.use(cors());
 app.use(express.json());
-const authController = require("./controllers/authController");
-const userController = require("./controllers/userController");
+const authController = require("../controllers/authController");
+const userController = require("../controllers/userController");
 mongoose
   .connect(process.env.DATABASE)
   .then(console.log("db connection is succesfull"));
