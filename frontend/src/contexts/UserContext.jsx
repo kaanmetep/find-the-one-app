@@ -10,9 +10,11 @@ function UserProvider({ children }) {
   const [response, setResponse] = useState("");
   const [passwordChangeIsLoading, setPasswordChangeIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingTotalLikes, setIsLoadingTotalLikes] = useState(false);
   const [error, setError] = useState(false);
   const [userData, setUserData] = useState({});
   const [users, setUsers] = useState([]);
+  const [totalLikedByPeople, setTotalLikedByPeople] = useState();
   const { onSetIsAuthenticated } = useAuth();
   let decoded;
   if (localStorage.getItem("jwt")) {
@@ -28,6 +30,27 @@ function UserProvider({ children }) {
       );
       const responseData = await response.json();
       setUsers(responseData.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const getTotalLikedByPeople = async (data) => {
+    try {
+      setIsLoadingTotalLikes(true);
+      let totalLikedByPeople;
+      const response = await fetch(
+        `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
+      );
+      const responseData = await response.json();
+      totalLikedByPeople = responseData.data.reduce((acc, curr) => {
+        if (curr.likedUsers.includes(data._id)) {
+          return acc + 1;
+        }
+        return acc;
+      }, 0);
+      setTotalLikedByPeople(totalLikedByPeople);
+      setIsLoadingTotalLikes(false);
     } catch (err) {
       console.log(err.message);
     }
@@ -195,6 +218,9 @@ function UserProvider({ children }) {
         dislikeUser,
         updateUserInfo,
         setUsers,
+        getTotalLikedByPeople,
+        totalLikedByPeople,
+        isLoadingTotalLikes,
       }}
     >
       {children}

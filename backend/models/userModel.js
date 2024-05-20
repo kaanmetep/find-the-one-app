@@ -83,6 +83,12 @@ const userSchema = new mongoose.Schema(
         ref: "User",
       },
     ],
+    matchedUsers: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Match",
+      },
+    ],
   },
   { strictQuery: true }
 );

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { useUser } from "../hooks/useUser";
+import Spinner from "./Spinner";
 
 function UserProfileCard() {
   const {
@@ -77,7 +78,6 @@ function UserProfileCard() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
-
   return (
     <div className=" flex flex-col items-center">
       <div className="md:w-60 md:h-96 w-52 h-72  ">
@@ -104,7 +104,10 @@ function UserProfileCard() {
                     {character.firstName}
                   </h3>
                   <p className="w-6 h-6 rounded-3xl bg-black text-white flex items-center justify-center text-sm">
-                    24
+                    {Math.floor(
+                      (new Date() - new Date(character.birthDate).getTime()) /
+                        (365.25 * 24 * 60 * 60 * 1000)
+                    )}
                   </p>
                 </div>
                 <p className="italic text-xs">
@@ -114,7 +117,14 @@ function UserProfileCard() {
             </div>
           </TinderCard>
         ))}
+
+        {/* <p className=" mt-24 bg-black p-6 rounded-md text-white font-semibold">
+          We couldn't find a suitable match for you. (This might be because
+          you've already liked or disliked all users in the system, or there are
+          no users in the system that match your preferences.)
+        </p> */}
       </div>
+
       <div className="flex justify-center items-center  gap-6 mt-6">
         <button
           onClick={() => swipe("left")}

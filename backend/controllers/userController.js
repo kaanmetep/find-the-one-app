@@ -3,8 +3,12 @@ const User = require("../models/userModel");
 exports.getAllUsers = async (req, res) => {
   try {
     const { excludeId, ...queryParams } = req.query;
-    const user = await User.findById(excludeId);
-    const excludedIds = [...user.likedUsers, ...user.dislikedUsers, excludeId];
+    let excludedIds = [];
+
+    if (excludeId) {
+      const user = await User.findById(excludeId);
+      excludedIds = [...user.likedUsers, ...user.dislikedUsers, excludeId];
+    }
 
     const query = User.find(queryParams);
 
