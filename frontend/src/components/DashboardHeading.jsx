@@ -9,6 +9,7 @@ function DashboardHeading() {
   const { handleUserData, userData, isLoading } = useUser();
   useEffect(() => {
     handleUserData();
+    console.log(userData.data?.firstName);
   }, []);
   const { onSetShowFilterAge } = useApp();
   const { pathname } = useLocation();

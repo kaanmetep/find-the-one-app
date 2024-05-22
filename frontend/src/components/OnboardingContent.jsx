@@ -117,6 +117,14 @@ function OnboardingContent() {
               onChange={onHandleSetNewUser}
             />
           </div>
+          <div className="flex flex-col items-start  gap-2">
+            <label htmlFor="lastname">Instagram Username</label>
+            <InputElement
+              name="instagramUsername"
+              value={newUser.instagramUsername}
+              onChange={onHandleSetNewUser}
+            />
+          </div>
           <div className="flex flex-col gap-8">
             <div className="flex flex-col items-start  gap-2">
               <label htmlFor="lastname">Photo</label>

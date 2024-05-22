@@ -22,6 +22,7 @@ exports.signup = async (req, res) => {
         genderIdentity: req.body.gender,
         genderInterest: req.body.genderPreference,
         about: req.body.about,
+        instagramUsername: req.body.instagramUsername,
       },
     });
 

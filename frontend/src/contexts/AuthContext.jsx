@@ -21,6 +21,7 @@ function AuthProvider({ children }) {
     gender: "man",
     genderPreference: "woman",
     about: "",
+    instagramUsername: "",
     photo: null,
   });
 

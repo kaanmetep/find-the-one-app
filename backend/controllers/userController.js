@@ -2,15 +2,23 @@ const User = require("../models/userModel");
 
 exports.getAllUsers = async (req, res) => {
   try {
-    const { excludeId, ...queryParams } = req.query;
+    const { excludeId, ids, ...queryParams } = req.query;
     let excludedIds = [];
-
+    let idsArray = [];
     if (excludeId) {
       const user = await User.findById(excludeId);
       excludedIds = [...user.likedUsers, ...user.dislikedUsers, excludeId];
     }
+    if (ids) {
+      idsArray = ids.split(",");
+    }
+    let query = User.find(queryParams);
 
-    const query = User.find(queryParams);
+    if (idsArray.length > 0) {
+      query = User.find({ _id: { $in: idsArray } });
+    } else {
+      query = User.find(queryParams);
+    }
 
     if (excludedIds.length > 0) {
       query.where("_id").nin(excludedIds);
@@ -26,7 +34,10 @@ exports.getAllUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id).populate({
+      path: "matchedUsers",
+      select: "user1_id user2_id status",
+    });
     res.status(200).json({ data: user });
   } catch (err) {
     res.status(404).json({ message: "user is not found!" });
@@ -54,10 +65,22 @@ exports.updatePassword = async (req, res) => {
 exports.updateInfo = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    user.firstName = req.body.firstName;
-    user.lastName = req.body.lastName;
-    user.image = req.body.image;
-    user.personelDetails.about = req.body.about;
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+    if (req.body.firstName !== undefined) {
+      user.firstName = req.body.firstName;
+    }
+    if (req.body.lastName !== undefined) {
+      user.lastName = req.body.lastName;
+    }
+    if (req.body.image !== undefined) {
+      user.image = req.body.image;
+    }
+    if (req.body.about !== undefined) {
+      user.personelDetails.about = req.body.about;
+    }
+
     await user.save();
     res.status(200).json({ data: user, message: "User updated successfully." });
   } catch (err) {
@@ -93,5 +116,18 @@ exports.dislikeUser = async (req, res) => {
     res.status(200).json({ message: "user disliked successfully." });
   } catch (err) {
     res.status(400).json({ message: "you could not disliked the user." });
+  }
+};
+
+exports.addMatch = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user.matchedUsers.includes(req.params.matchId)) {
+      user.matchedUsers.push(req.params.matchId);
+      await user.save();
+    }
+    res.status(200).json({ data: user });
+  } catch (err) {
+    res.status(500).json({ message: "An error occurred while matching users" });
   }
 };

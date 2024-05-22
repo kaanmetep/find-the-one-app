@@ -35,6 +35,18 @@ function UserProvider({ children }) {
     }
   };
 
+  const getUsersByIds = async (ids) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/users?ids=${ids.join(",")}`
+      );
+      const responseData = await response.json();
+      return responseData.data;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const getTotalLikedByPeople = async (data) => {
     try {
       setIsLoadingTotalLikes(true);
@@ -56,12 +68,14 @@ function UserProvider({ children }) {
     }
   };
 
-  const handleUserData = async () => {
+  const handleUserData = async (userId = null) => {
     try {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}`
+        `http://localhost:3000/api/v1/user/${
+          userId === null ? decoded.id : userId
+        }`
       );
       const responseData = await response.json();
       setIsLoading(false);
@@ -196,6 +210,40 @@ function UserProvider({ children }) {
       setIsLoading(false);
     }
   };
+  const createMatch = async (matchInfo) => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/v1/match`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(matchInfo),
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      return responseData.data._id;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  const addMatch = async (userId, matchId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/user/${userId}/${matchId}/match`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -221,6 +269,9 @@ function UserProvider({ children }) {
         getTotalLikedByPeople,
         totalLikedByPeople,
         isLoadingTotalLikes,
+        createMatch,
+        addMatch,
+        getUsersByIds,
       }}
     >
       {children}

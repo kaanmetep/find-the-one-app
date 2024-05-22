@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { useUser } from "../hooks/useUser";
+import { useApp } from "../hooks/useApp";
 import Spinner from "./Spinner";
 
 function UserProfileCard() {
@@ -12,7 +13,10 @@ function UserProfileCard() {
     likeUser,
     dislikeUser,
     setUsers,
+    createMatch,
+    addMatch,
   } = useUser();
+  const { setMatchedText } = useApp();
   useEffect(() => {
     const fetchData = async () => {
       setUsers([]);
@@ -58,7 +62,18 @@ function UserProfileCard() {
   const outOfFrame = async (name, idx, dir) => {
     if (name === "right") {
       await likeUser(users[currentIndex]._id);
-      console.log(userData);
+      if (users[currentIndex].likedUsers.includes(userData.data._id)) {
+        console.log("its a match!!!!!!!!!!!!!!!!!!!");
+        setMatchedText("ITS A MATCH !!!");
+        const matchId = await createMatch({
+          user1_id: userData.data._id,
+          user2_id: users[currentIndex]._id,
+          matchedAt: Date.now(),
+          status: true,
+        });
+        addMatch(userData.data._id, matchId);
+        addMatch(users[currentIndex]._id, matchId);
+      }
     }
     if (name === "left") {
       await dislikeUser(users[currentIndex]._id);
@@ -78,6 +93,7 @@ function UserProfileCard() {
     updateCurrentIndex(newIndex);
     await childRefs[newIndex].current.restoreCard();
   };
+
   return (
     <div className=" flex flex-col items-center">
       <div className="md:w-60 md:h-96 w-52 h-72  ">

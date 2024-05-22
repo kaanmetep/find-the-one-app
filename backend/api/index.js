@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 const authController = require("../controllers/authController");
 const userController = require("../controllers/userController");
+const matchController = require("../controllers/matchController");
 mongoose
   .connect(process.env.DATABASE)
   .then(console.log("db connection is succesfull"));
@@ -27,8 +28,13 @@ app.patch(
   "/api/v1/user/:id/:dislikedUserId/dislike",
   userController.dislikeUser
 );
+
+app.patch("/api/v1/user/:id/:matchId/match", userController.addMatch);
+
 app.post("/api/v1/signup", authController.signup);
 app.post("/api/v1/login", authController.login);
+
+app.post("/api/v1/match", matchController.createMatch);
 
 const port = process.env.PORT;
 app.listen(port, () => {

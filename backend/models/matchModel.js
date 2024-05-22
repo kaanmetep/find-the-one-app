@@ -13,7 +13,7 @@ const matchSchema = new mongoose.Schema(
       type: Date,
     },
     status: {
-      type: bool,
+      type: Boolean,
     },
   },
   { strictQuery: true }

@@ -70,6 +70,10 @@ const userSchema = new mongoose.Schema(
           "Please don't use more than 20 words to tell about yourself!",
         ],
       },
+      instagramUsername: {
+        type: String,
+        required: [true, "Please provide your instagram account."],
+      },
     },
     likedUsers: [
       {

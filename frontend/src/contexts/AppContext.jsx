@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 
 const AppContext = createContext();
 
@@ -8,6 +8,7 @@ function AppProvider({ children }) {
   const [supFirstName, setSupFirstName] = useState("");
   const [supEmail, setSupEmail] = useState("");
   const [supMessage, setSupMessage] = useState("");
+  const [matchedText, setMatchedText] = useState("");
   return (
     <AppContext.Provider
       value={{
@@ -21,6 +22,8 @@ function AppProvider({ children }) {
         onSetSupFirstName: setSupFirstName,
         onSetSupEmail: setSupEmail,
         onSetSupMessage: setSupMessage,
+        setMatchedText,
+        matchedText,
       }}
     >
       {children}
