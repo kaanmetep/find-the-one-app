@@ -9,10 +9,10 @@ function DashboardHeading() {
   const { handleUserData, userData, isLoading } = useUser();
   useEffect(() => {
     handleUserData();
-    console.log(userData.data?.firstName);
   }, []);
   const { onSetShowFilterAge } = useApp();
   const { pathname } = useLocation();
+
   return (
     <div className="container mx-auto sm:px-4 ">
       <div className="p-1 sm:p-4 bg-gradient-to-r from-red-50 to-red-300 grid grid-rows-2 md:flex md:items-center md:justify-between rounded-md justify-items-center gap-y-1">

@@ -15,6 +15,7 @@ function UserProfileCard() {
     setUsers,
     createMatch,
     addMatch,
+    isLoadingUsers,
   } = useUser();
   const { setMatchedText } = useApp();
   useEffect(() => {
@@ -97,48 +98,57 @@ function UserProfileCard() {
   return (
     <div className=" flex flex-col items-center">
       <div className="md:w-60 md:h-96 w-52 h-72  ">
-        {users.map((character, index) => (
-          <TinderCard
-            ref={childRefs[index]}
-            className="absolute "
-            key={character._id}
-            onSwipe={(dir) => swiped(dir, character.firstName, index)}
-            onCardLeftScreen={(dir) =>
-              outOfFrame(dir, character.firstName, index)
-            }
-            preventSwipe={["up", "down"]}
-            swipeRequirementType="position"
-            swipeThreshold={30}
-          >
-            <div
-              style={{ backgroundImage: `url(${character.image})` }}
-              className="relative bg-white md:w-60 md:h-96 w-52 h-72 bg-cover bg-center rounded-lg"
+        {isLoadingUsers ? (
+          <div className="flex justify-center items-center  h-full flex-col gap-4">
+            <Spinner />
+            <p className="text-center font-semibold">
+              We are trying to find best matches for you, hang tight!
+            </p>
+          </div>
+        ) : (
+          users.map((character, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              className="absolute "
+              key={character._id}
+              onSwipe={(dir) => swiped(dir, character.firstName, index)}
+              onCardLeftScreen={(dir) =>
+                outOfFrame(dir, character.firstName, index)
+              }
+              preventSwipe={["up", "down"]}
+              swipeRequirementType="position"
+              swipeThreshold={30}
             >
-              <div className="absolute bottom-6 bg-white w-full py-2 flex flex-col items-center">
-                <div className="flex gap-2 justify-between px-4">
-                  <h3 className="text-black flex  justify-center font-bold uppercase text-sm">
-                    {character.firstName}
-                  </h3>
-                  <p className="w-6 h-6 rounded-3xl bg-black text-white flex items-center justify-center text-sm">
-                    {Math.floor(
-                      (new Date() - new Date(character.birthDate).getTime()) /
-                        (365.25 * 24 * 60 * 60 * 1000)
-                    )}
+              <div
+                style={{ backgroundImage: `url(${character.image})` }}
+                className="relative bg-white md:w-60 md:h-96 w-52 h-72 bg-cover bg-center rounded-lg"
+              >
+                <div className="absolute bottom-6 bg-white w-full py-2 flex flex-col items-center">
+                  <div className="flex gap-2 justify-between px-4">
+                    <h3 className="text-black flex  justify-center font-bold uppercase text-sm">
+                      {character.firstName}
+                    </h3>
+                    <p className="w-6 h-6 rounded-3xl bg-black text-white flex items-center justify-center text-sm">
+                      {Math.floor(
+                        (new Date() - new Date(character.birthDate).getTime()) /
+                          (365.25 * 24 * 60 * 60 * 1000)
+                      )}
+                    </p>
+                  </div>
+                  <p className="italic text-xs">
+                    {character.personelDetails.about}
                   </p>
                 </div>
-                <p className="italic text-xs">
-                  {character.personelDetails.about}
-                </p>
               </div>
-            </div>
-          </TinderCard>
-        ))}
-
-        {/* <p className=" mt-24 bg-black p-6 rounded-md text-white font-semibold">
-          We couldn't find a suitable match for you. (This might be because
-          you've already liked or disliked all users in the system, or there are
-          no users in the system that match your preferences.)
-        </p> */}
+              {/* <p className=" mt-24 bg-slate-500 p-6 rounded-md text-white font-semibold">
+                We couldn't find a suitable match for you. (This might be
+                because you've already liked or disliked all users in the
+                system, or there are no users in the system that match your
+                preferences.)
+              </p> */}
+            </TinderCard>
+          ))
+        )}
       </div>
 
       <div className="flex justify-center items-center  gap-6 mt-6">

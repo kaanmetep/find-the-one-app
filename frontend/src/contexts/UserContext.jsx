@@ -11,6 +11,7 @@ function UserProvider({ children }) {
   const [passwordChangeIsLoading, setPasswordChangeIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingTotalLikes, setIsLoadingTotalLikes] = useState(false);
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [error, setError] = useState(false);
   const [userData, setUserData] = useState({});
   const [users, setUsers] = useState([]);
@@ -25,11 +26,13 @@ function UserProvider({ children }) {
 
   const getUsers = async (data) => {
     try {
+      setIsLoadingUsers(true);
       const response = await fetch(
         `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}&excludeId=${data._id}`
       );
       const responseData = await response.json();
       setUsers(responseData.data);
+      setIsLoadingUsers(false);
     } catch (err) {
       console.log(err.message);
     }
@@ -272,6 +275,7 @@ function UserProvider({ children }) {
         createMatch,
         addMatch,
         getUsersByIds,
+        isLoadingUsers,
       }}
     >
       {children}

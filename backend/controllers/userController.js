@@ -90,6 +90,9 @@ exports.updateInfo = async (req, res) => {
 exports.likeUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
     if (
       !user.likedUsers.includes(req.params.likedUserId) &&
       !user.dislikedUsers.includes(req.params.likedUserId)
@@ -99,7 +102,7 @@ exports.likeUser = async (req, res) => {
     }
     res.status(200).json({ message: "user liked successfully." });
   } catch (err) {
-    res.status(400).json({ message: "you could not like the user." });
+    res.status(400).json({ message: err.message });
   }
 };
 
