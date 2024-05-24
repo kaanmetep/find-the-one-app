@@ -5,9 +5,6 @@ const AppContext = createContext();
 function AppProvider({ children }) {
   const [showLogInPopUp, setShowLogInPopUp] = useState(false);
   const [showFilterAge, setShowFilterAge] = useState(false);
-  const [supFirstName, setSupFirstName] = useState("");
-  const [supEmail, setSupEmail] = useState("");
-  const [supMessage, setSupMessage] = useState("");
   const [matchedText, setMatchedText] = useState("");
   return (
     <AppContext.Provider
@@ -16,12 +13,6 @@ function AppProvider({ children }) {
         onSetShowLogInPopUp: setShowLogInPopUp,
         showFilterAge,
         onSetShowFilterAge: setShowFilterAge,
-        supFirstName,
-        supEmail,
-        supMessage,
-        onSetSupFirstName: setSupFirstName,
-        onSetSupEmail: setSupEmail,
-        onSetSupMessage: setSupMessage,
         setMatchedText,
         matchedText,
       }}

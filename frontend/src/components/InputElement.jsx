@@ -7,6 +7,7 @@ function InputElement({
   onChange,
   name = "",
   accept = "",
+  maxLength = 36,
 }) {
   return (
     <input
@@ -22,7 +23,7 @@ function InputElement({
       onChange={onChange}
       name={name}
       accept={accept}
-      maxLength={36}
+      maxLength={maxLength}
     />
   );
 }

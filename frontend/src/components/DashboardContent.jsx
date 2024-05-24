@@ -2,7 +2,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useApp } from "../hooks/useApp";
 import FilterAgePopUp from "./FilterAgePopUp";
 import UserProfileCard from "./UserProfileCard";
-
 function DashboardContent() {
   const { showFilterAge } = useApp();
   const { pathname } = useLocation();

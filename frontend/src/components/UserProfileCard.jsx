@@ -97,7 +97,7 @@ function UserProfileCard() {
 
   return (
     <div className=" flex flex-col items-center">
-      <div className="md:w-60 md:h-96 w-52 h-72  ">
+      <div className="md:w-60 md:h-96 w-52 h-72 ">
         {isLoadingUsers ? (
           <div className="flex justify-center items-center  h-full flex-col gap-4">
             <Spinner />
@@ -121,7 +121,7 @@ function UserProfileCard() {
             >
               <div
                 style={{ backgroundImage: `url(${character.image})` }}
-                className="relative bg-white md:w-60 md:h-96 w-52 h-72 bg-cover bg-center rounded-lg"
+                className="z-10 relative bg-white md:w-60 md:h-96 w-52 h-72 bg-cover bg-center rounded-lg"
               >
                 <div className="absolute bottom-6 bg-white w-full py-2 flex flex-col items-center">
                   <div className="flex gap-2 justify-between px-4">
@@ -140,15 +140,18 @@ function UserProfileCard() {
                   </p>
                 </div>
               </div>
-              {/* <p className=" mt-24 bg-slate-500 p-6 rounded-md text-white font-semibold">
-                We couldn't find a suitable match for you. (This might be
-                because you've already liked or disliked all users in the
-                system, or there are no users in the system that match your
-                preferences.)
-              </p> */}
             </TinderCard>
           ))
         )}
+        <div className="">
+          {isLoadingUsers || (
+            <p className=" mt-24 bg-slate-500 p-6 rounded-md text-white font-semibold lg:text-base text-xs">
+              We couldn't find a suitable match for you. (This might be because
+              you've already liked or disliked all users in the system, or there
+              are no users in the system that match your preferences.)
+            </p>
+          )}
+        </div>
       </div>
 
       <div className="flex justify-center items-center  gap-6 mt-6">

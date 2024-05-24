@@ -1,8 +1,10 @@
 const User = require("../models/userModel");
 
+const mongoose = require("mongoose");
+
 exports.getAllUsers = async (req, res) => {
   try {
-    const { excludeId, ids, ...queryParams } = req.query;
+    const { excludeId, ids, age, ...queryParams } = req.query;
     let excludedIds = [];
     let idsArray = [];
     if (excludeId) {
@@ -12,12 +14,28 @@ exports.getAllUsers = async (req, res) => {
     if (ids) {
       idsArray = ids.split(",");
     }
-    let query = User.find(queryParams);
+
+    // Yaş aralığı kontrolü ve dateQuery oluşturma
+    let dateQuery = {};
+    if (age) {
+      const [minAge, maxAge] = age.split("-").map(Number);
+      const currentDate = new Date();
+      const minBirthDate = new Date(
+        currentDate.setFullYear(currentDate.getFullYear() - maxAge)
+      );
+      const maxBirthDate = new Date(
+        currentDate.setFullYear(currentDate.getFullYear() + (maxAge - minAge))
+      );
+      dateQuery = { birthDate: { $gte: minBirthDate, $lte: maxBirthDate } };
+    }
+
+    // Temel sorguyu oluşturma
+    let query = User.find({ ...queryParams, ...dateQuery });
 
     if (idsArray.length > 0) {
       query = User.find({ _id: { $in: idsArray } });
     } else {
-      query = User.find(queryParams);
+      query = User.find({ ...queryParams, ...dateQuery });
     }
 
     if (excludedIds.length > 0) {

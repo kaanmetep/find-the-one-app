@@ -24,6 +24,21 @@ function UserProvider({ children }) {
     decoded = jwtDecode(token) || null;
   }
 
+  const filterUsersByAge = async (data) => {
+    try {
+      console.log(userData.data);
+      setIsLoadingUsers(true);
+      const response = await fetch(
+        `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${userData.data.personelDetails.genderInterest}&excludeId=${userData.data._id}&age=${data.min}-${data.max}`
+      );
+      const responseData = await response.json();
+      setUsers(responseData.data);
+      setIsLoadingUsers(false);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   const getUsers = async (data) => {
     try {
       setIsLoadingUsers(true);
@@ -37,7 +52,6 @@ function UserProvider({ children }) {
       console.log(err.message);
     }
   };
-
   const getUsersByIds = async (ids) => {
     try {
       const response = await fetch(
@@ -276,6 +290,7 @@ function UserProvider({ children }) {
         addMatch,
         getUsersByIds,
         isLoadingUsers,
+        filterUsersByAge,
       }}
     >
       {children}
