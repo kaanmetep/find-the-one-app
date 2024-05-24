@@ -29,7 +29,7 @@ function UserProvider({ children }) {
       console.log(userData.data);
       setIsLoadingUsers(true);
       const response = await fetch(
-        `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${userData.data.personelDetails.genderInterest}&excludeId=${userData.data._id}&age=${data.min}-${data.max}`
+        `https://ftobackend.vercel.app/api/v1/users?personelDetails.genderIdentity=${userData.data.personelDetails.genderInterest}&excludeId=${userData.data._id}&age=${data.min}-${data.max}`
       );
       const responseData = await response.json();
       setUsers(responseData.data);
@@ -43,7 +43,7 @@ function UserProvider({ children }) {
     try {
       setIsLoadingUsers(true);
       const response = await fetch(
-        `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}&excludeId=${data._id}`
+        `https://ftobackend.vercel.app/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}&excludeId=${data._id}`
       );
       const responseData = await response.json();
       setUsers(responseData.data);
@@ -55,7 +55,7 @@ function UserProvider({ children }) {
   const getUsersByIds = async (ids) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/users?ids=${ids.join(",")}`
+        `https://ftobackend.vercel.app/api/v1/users?ids=${ids.join(",")}`
       );
       const responseData = await response.json();
       return responseData.data;
@@ -69,7 +69,7 @@ function UserProvider({ children }) {
       setIsLoadingTotalLikes(true);
       let totalLikedByPeople;
       const response = await fetch(
-        `http://localhost:3000/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
+        `https://ftobackend.vercel.app/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
       );
       const responseData = await response.json();
       totalLikedByPeople = responseData.data.reduce((acc, curr) => {
@@ -90,7 +90,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${
+        `https://ftobackend.vercel.app/v1/user/${
           userId === null ? decoded.id : userId
         }`
       );
@@ -114,7 +114,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}`,
+        `https://ftobackend.vercel.app/v1/user/${decoded.id}`,
         {
           method: "DELETE",
           headers: {
@@ -142,7 +142,7 @@ function UserProvider({ children }) {
       setPasswordChangeIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}/password`,
+        `https://ftobackend.vercel.app/v1/user/${decoded.id}/password`,
         {
           method: "PATCH",
           headers: {
@@ -171,7 +171,7 @@ function UserProvider({ children }) {
   const likeUser = async (likedUserId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}/${likedUserId}/like`,
+        `https://ftobackend.vercel.app/api/v1/user/${decoded.id}/${likedUserId}/like`,
         {
           method: "PATCH",
           headers: {
@@ -188,7 +188,7 @@ function UserProvider({ children }) {
   const dislikeUser = async (dislikedUserId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}/${dislikedUserId}/dislike`,
+        `https://ftobackend.vercel.app/api/v1/user/${decoded.id}/${dislikedUserId}/dislike`,
         {
           method: "PATCH",
           headers: {
@@ -207,7 +207,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${decoded.id}/info`,
+        `https://ftobackend.vercel.app/api/v1/user/${decoded.id}/info`,
         {
           method: "PATCH",
           headers: {
@@ -229,13 +229,16 @@ function UserProvider({ children }) {
   };
   const createMatch = async (matchInfo) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/match`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(matchInfo),
-      });
+      const response = await fetch(
+        `https://ftobackend.vercel.app/api/v1/match`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(matchInfo),
+        }
+      );
       const responseData = await response.json();
       console.log(responseData);
       return responseData.data._id;
@@ -246,7 +249,7 @@ function UserProvider({ children }) {
   const addMatch = async (userId, matchId) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/v1/user/${userId}/${matchId}/match`,
+        `https://ftobackend.vercel.app/api/v1/user/${userId}/${matchId}/match`,
         {
           method: "PATCH",
           headers: {

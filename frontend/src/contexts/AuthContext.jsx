@@ -53,13 +53,16 @@ function AuthProvider({ children }) {
   const signup = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/api/v1/signup", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
+      const response = await fetch(
+        "https://ftobackend.vercel.app/api/v1/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      );
       const responseData = await response.json();
       setIsLoading(false);
       if (response.ok) {
@@ -81,13 +84,16 @@ function AuthProvider({ children }) {
   const login = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/api/v1/login", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(currUser),
-      });
+      const response = await fetch(
+        "https://ftobackend.vercel.app/api/v1/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(currUser),
+        }
+      );
       const responseData = await response.json();
       setIsLoading(false);
       if (response.ok) {
