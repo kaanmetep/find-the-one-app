@@ -4,10 +4,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config({ path: "../config.env" });
 const app = express();
-const corsOptions = {
-  origin: "https://findtheone.vercel.app/",
-};
-app.use(cors(corsOptions));
+
 app.use(cors());
 app.use(express.json());
 const authController = require("../controllers/authController");
