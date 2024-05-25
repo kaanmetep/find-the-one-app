@@ -30,6 +30,14 @@ function App() {
               <Route path="statistics" element={<Statistics />} />
               <Route path="profile" element={<Profile />} />
             </Route>
+            <Route
+              path="*"
+              element={
+                <h1 className="text-2xl m-1 text-red-400 font-semibold">
+                  We are sorry but the page you are looking for does not exist..
+                </h1>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
