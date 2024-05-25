@@ -263,7 +263,21 @@ function UserProvider({ children }) {
       console.log(err.message);
     }
   };
-
+  const deleteMatch = async (matchId) => {
+    try {
+      const response = await fetch(
+        `https://ftobackend.vercel.app/api/v1/match/${matchId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
     <UserContext.Provider
       value={{
@@ -294,6 +308,7 @@ function UserProvider({ children }) {
         getUsersByIds,
         isLoadingUsers,
         filterUsersByAge,
+        deleteMatch,
       }}
     >
       {children}

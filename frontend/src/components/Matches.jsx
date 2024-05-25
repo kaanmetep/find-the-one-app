@@ -4,6 +4,7 @@ import { useApp } from "../hooks/useApp";
 import UserInfoCard from "./UserInfoCard";
 function Matches() {
   const [matchedUsers, setMatchedUsers] = useState([]);
+  const [matchInfo, setMatchInfo] = useState([]);
   const { handleUserData, getUsersByIds } = useUser();
   const [selectedUser, setSelectedUser] = useState(null);
   const { setMatchedText, matchedText } = useApp();
@@ -14,12 +15,15 @@ function Matches() {
       const matchesArr = user.matchedUsers;
       const matchedIds = matchesArr?.map((match) => {
         if (match.user1_id === user._id) {
-          return match.user2_id;
+          return { matchId: match._id, matchedUser: match.user2_id };
         }
-        return match.user1_id;
+        return { matchId: match._id, matchedUser: match.user1_id };
       });
+      setMatchInfo(matchedIds);
       if (matchedIds.length > 0) {
-        users = await getUsersByIds(matchedIds);
+        users = await getUsersByIds(
+          matchedIds.map((match) => match.matchedUser)
+        );
       }
       setMatchedUsers(users);
     };
@@ -86,7 +90,7 @@ function Matches() {
         {matchedUsers?.map((match) => (
           <Match
             matchObj={match}
-            key={match._id}
+            key={match.matchId}
             setSelectedUser={setSelectedUser}
           />
         ))}
@@ -95,6 +99,7 @@ function Matches() {
         <UserInfoCard
           setSelectedUser={setSelectedUser}
           selectedUser={selectedUser}
+          matchInfo={matchInfo}
         />
       )}
     </div>

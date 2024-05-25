@@ -36,7 +36,7 @@ app.post("/api/v1/signup", authController.signup);
 app.post("/api/v1/login", authController.login);
 
 app.post("/api/v1/match", matchController.createMatch);
-
+app.delete("/api/v1/match/:id", matchController.deleteMatch);
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`app running on port ${port}`);
