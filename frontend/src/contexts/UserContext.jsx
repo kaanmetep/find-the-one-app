@@ -69,7 +69,7 @@ function UserProvider({ children }) {
       setIsLoadingTotalLikes(true);
       let totalLikedByPeople;
       const response = await fetch(
-        `https://ftobackend.vercel.app/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
+        `https://ftobackend.vercel.app/api/v1users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
       );
       const responseData = await response.json();
       totalLikedByPeople = responseData.data.reduce((acc, curr) => {
@@ -90,7 +90,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `https://ftobackend.vercel.app/v1/user/${
+        `https://ftobackend.vercel.app/api/v1/user/${
           userId === null ? decoded.id : userId
         }`
       );
@@ -114,7 +114,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `https://ftobackend.vercel.app/v1/user/${decoded.id}`,
+        `https://ftobackend.vercel.app/api/v1/user/${decoded.id}`,
         {
           method: "DELETE",
           headers: {
@@ -142,7 +142,7 @@ function UserProvider({ children }) {
       setPasswordChangeIsLoading(true);
 
       const response = await fetch(
-        `https://ftobackend.vercel.app/v1/user/${decoded.id}/password`,
+        `https://ftobackend.vercel.app/api/v1/user/${decoded.id}/password`,
         {
           method: "PATCH",
           headers: {
