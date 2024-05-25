@@ -69,7 +69,7 @@ function UserProvider({ children }) {
       setIsLoadingTotalLikes(true);
       let totalLikedByPeople;
       const response = await fetch(
-        `https://ftobackend.vercel.app/api/v1users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
+        `https://ftobackend.vercel.app/api/v1/users?personelDetails.genderIdentity=${data.personelDetails.genderInterest}`
       );
       const responseData = await response.json();
       totalLikedByPeople = responseData.data.reduce((acc, curr) => {
