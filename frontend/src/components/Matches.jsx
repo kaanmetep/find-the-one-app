@@ -8,6 +8,7 @@ function Matches() {
   const { handleUserData, getUsersByIds } = useUser();
   const [selectedUser, setSelectedUser] = useState(null);
   const { setMatchedText, matchedText } = useApp();
+  const [deletedMatch, setDeletedMatch] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       let users;
@@ -28,7 +29,7 @@ function Matches() {
       setMatchedUsers(users);
     };
     fetchData();
-  }, [matchedText]);
+  }, [matchedText, deletedMatch]);
   useEffect(() => {
     let timeoutId;
     if (matchedText !== "") {
@@ -100,6 +101,7 @@ function Matches() {
           setSelectedUser={setSelectedUser}
           selectedUser={selectedUser}
           matchInfo={matchInfo}
+          setDeletedMatch={setDeletedMatch}
         />
       )}
     </div>

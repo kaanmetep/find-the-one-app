@@ -15,7 +15,6 @@ exports.getAllUsers = async (req, res) => {
       idsArray = ids.split(",");
     }
 
-    // Yaş aralığı kontrolü ve dateQuery oluşturma
     let dateQuery = {};
     if (age) {
       const [minAge, maxAge] = age.split("-").map(Number);
@@ -29,7 +28,6 @@ exports.getAllUsers = async (req, res) => {
       dateQuery = { birthDate: { $gte: minBirthDate, $lte: maxBirthDate } };
     }
 
-    // Temel sorguyu oluşturma
     let query = User.find({ ...queryParams, ...dateQuery });
 
     if (idsArray.length > 0) {

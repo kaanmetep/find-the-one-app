@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useUser } from "../hooks/useUser";
-function UserInfoCard({ setSelectedUser, selectedUser, matchInfo }) {
+function UserInfoCard({
+  setSelectedUser,
+  selectedUser,
+  matchInfo,
+  setDeletedMatch,
+}) {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const { deleteMatch } = useUser();
   return (
@@ -52,6 +57,7 @@ function UserInfoCard({ setSelectedUser, selectedUser, matchInfo }) {
                   );
                   deleteMatch(obj.matchId);
                   setShowConfirmation(false);
+                  setDeletedMatch(obj.matchId);
                   setSelectedUser(null);
                 }}
               >
