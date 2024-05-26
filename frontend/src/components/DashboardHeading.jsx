@@ -1,10 +1,9 @@
-import DashboardNav from "./DashboardNav";
-import Spinner from "./Spinner";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useApp } from "../hooks/useApp";
 import { useUser } from "../hooks/useUser";
-import { useLocation } from "react-router-dom";
-
+import DashboardNav from "./DashboardNav";
+import Spinner from "./Spinner";
 function DashboardHeading() {
   const { handleUserData, userData, isLoading } = useUser();
   useEffect(() => {

@@ -10,8 +10,6 @@ import {
 const UserContext = createContext();
 
 function UserProvider({ children }) {
-  const [newPassword, setNewPassword] = useState("");
-  const [newRePassword, setNewRePassword] = useState("");
   const [response, setResponse] = useState("");
   const [passwordChangeIsLoading, setPasswordChangeIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -135,7 +133,7 @@ function UserProvider({ children }) {
       setIsLoading(false);
     }
   };
-  const updateUserPassword = async () => {
+  const updateUserPassword = async (newPassword, newRePassword) => {
     try {
       setPasswordChangeIsLoading(true);
 
@@ -278,10 +276,6 @@ function UserProvider({ children }) {
         updateUserPassword,
         response,
         onSetResponse: setResponse,
-        newPassword,
-        newRePassword,
-        onSetNewPassword: setNewPassword,
-        onSetNewRePassword: setNewRePassword,
         passwordChangeIsLoading,
         users,
         getUsers,

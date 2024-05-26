@@ -12,6 +12,9 @@ exports.createMatch = async (req, res) => {
 exports.deleteMatch = async (req, res) => {
   try {
     const match = await Match.findByIdAndDelete(req.params.id);
+    if (!match) {
+      return res.status(404).json({ error: "Match not found." });
+    }
     console.log("match deleted successfully.");
   } catch (err) {
     res.status(401).json({ message: "you couldnt delete the match." });

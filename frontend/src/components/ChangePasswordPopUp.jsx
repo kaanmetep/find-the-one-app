@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { useUser } from "../hooks/useUser";
 import Spinner from "./Spinner";
@@ -8,12 +9,10 @@ function ChangePasswordPopUp({ onSetChangePasswordPopUp }) {
     updateUserPassword,
     response,
     onSetResponse,
-    newPassword,
-    newRePassword,
-    onSetNewPassword,
-    onSetNewRePassword,
     passwordChangeIsLoading,
   } = useUser();
+  const [newPassword, setNewPassword] = useState("");
+  const [newRePassword, setNewRePassword] = useState("");
   const handleChangePassword = (e) => {
     e.preventDefault();
     if (newPassword !== newRePassword) {
@@ -24,7 +23,7 @@ function ChangePasswordPopUp({ onSetChangePasswordPopUp }) {
       onSetResponse("Please fill all the areas.");
       return;
     }
-    updateUserPassword();
+    updateUserPassword(newPassword, newRePassword);
   };
   return (
     <div className=" fixed top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center z-[100]   inset-0 backdrop-blur-sm bg-opacity-50 ">
@@ -34,7 +33,7 @@ function ChangePasswordPopUp({ onSetChangePasswordPopUp }) {
           <InputElement
             type="password"
             value={newPassword}
-            onChange={(e) => onSetNewPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-start  gap-2">
@@ -42,7 +41,7 @@ function ChangePasswordPopUp({ onSetChangePasswordPopUp }) {
           <InputElement
             type="password"
             value={newRePassword}
-            onChange={(e) => onSetNewRePassword(e.target.value)}
+            onChange={(e) => setNewRePassword(e.target.value)}
           />
         </div>
         <p className="text-red-600 uppercase italic text-semibold">

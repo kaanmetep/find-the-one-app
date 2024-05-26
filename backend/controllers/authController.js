@@ -48,7 +48,7 @@ exports.login = async (req, res) => {
 
   // 1-) Bir email ve password girildi mi diye kontrol et.
   if (!currUserEmail || !currUserPassword) {
-    // buraya normalde return next(new AppError('Please provide email and password!',400)); gelicel.
+    // buraya normalde return next(new AppError('Please provide email and password!',400)); gelicek.
     return res
       .status(400)
       .json({ result: "please enter your email and password." });
@@ -66,10 +66,6 @@ exports.login = async (req, res) => {
 
   // 3-) If everything is ok, send token to client
   const token = signToken(user._id);
-  res.cookie("jwt", token, {
-    expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
-    httpOnly: true,
-    sameSite: "Lax",
-  });
+
   res.status(200).json({ token });
 };

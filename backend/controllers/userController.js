@@ -54,28 +54,42 @@ exports.getUser = async (req, res) => {
       path: "matchedUsers",
       select: "user1_id user2_id status",
     });
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
     res.status(200).json({ data: user });
   } catch (err) {
-    res.status(404).json({ message: "user is not found!" });
+    res.status(500).json({ error: "An unexpected error occurred." });
   }
 };
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
-    res.status(200).json({ data: "User deleted successfully." });
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+    return res.status(200).json({ message: "User deleted successfully." });
   } catch (err) {
-    res.status(404).json({ message: "User could not deleted." });
+    res.status(500).json({ error: "An unexpected error occurred." });
   }
 };
 exports.updatePassword = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("+hashedPassword");
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    if (req.body.newPassword !== req.body.newRePassword) {
+      return res.status(400).json({ error: "Passwords do not match." });
+    }
+
     user.hashedPassword = req.body.newPassword;
-    user.confirmPassword = req.body.newRePassword;
     await user.save();
-    res.status(200).json({ data: "Password updated successfully." });
+    return res.status(200).json({ message: "Password updated successfully." });
   } catch (err) {
-    res.status(404).json({ data: "Password could not updated." });
+    console.error("Error updating password:", err);
+    return res.status(500).json({ error: "An unexpected error occurred." });
   }
 };
 exports.updateInfo = async (req, res) => {
@@ -125,6 +139,9 @@ exports.likeUser = async (req, res) => {
 exports.dislikeUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
     if (
       !user.dislikedUsers.includes(req.params.dislikedUserId) &&
       !user.likedUsers.includes(req.params.dislikedUserId)
@@ -141,6 +158,9 @@ exports.dislikeUser = async (req, res) => {
 exports.addMatch = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
     if (!user.matchedUsers.includes(req.params.matchId)) {
       user.matchedUsers.push(req.params.matchId);
       await user.save();
