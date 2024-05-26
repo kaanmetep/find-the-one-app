@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { resizeFile, dataURItoBlob } from "../utils";
-
+import { authEndpointUrl } from "../constants";
 const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -53,16 +53,13 @@ function AuthProvider({ children }) {
   const signup = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        "https://ftobackend.vercel.app/api/v1/signup",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        }
-      );
+      const response = await fetch(`${authEndpointUrl}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
       const responseData = await response.json();
       setIsLoading(false);
       if (response.ok) {
@@ -84,16 +81,13 @@ function AuthProvider({ children }) {
   const login = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        "https://ftobackend.vercel.app/api/v1/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(currUser),
-        }
-      );
+      const response = await fetch(`${authEndpointUrl}/login`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(currUser),
+      });
       const responseData = await response.json();
       setIsLoading(false);
       if (response.ok) {

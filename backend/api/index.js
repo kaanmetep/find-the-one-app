@@ -7,36 +7,22 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-const authController = require("../controllers/authController");
-const userController = require("../controllers/userController");
-const matchController = require("../controllers/matchController");
+const userRoutes = require("./routes/userRoutes");
+const authRoutes = require("./routes/authRoutes");
+const matchRoutes = require("./routes/matchRoutes");
+
 mongoose
   .connect(process.env.DATABASE)
   .then(console.log("db connection is succesfull"));
 
 app.get("/", (req, res) => {
-  res.json("hello");
+  res.json("server is on");
 });
 
-app.get("/api/v1/users", userController.getAllUsers);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/auth", authRoutes); //
+app.use("/api/v1/match", matchRoutes);
 
-app.get("/api/v1/user/:id", userController.getUser);
-app.delete("/api/v1/user/:id", userController.deleteUser);
-app.patch("/api/v1/user/:id/password", userController.updatePassword);
-app.patch("/api/v1/user/:id/info", userController.updateInfo);
-app.patch("/api/v1/user/:id/:likedUserId/like", userController.likeUser);
-app.patch(
-  "/api/v1/user/:id/:dislikedUserId/dislike",
-  userController.dislikeUser
-);
-
-app.patch("/api/v1/user/:id/:matchId/match", userController.addMatch);
-
-app.post("/api/v1/signup", authController.signup);
-app.post("/api/v1/login", authController.login);
-
-app.post("/api/v1/match", matchController.createMatch);
-app.delete("/api/v1/match/:id", matchController.deleteMatch);
 const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`app running on port ${port}`);

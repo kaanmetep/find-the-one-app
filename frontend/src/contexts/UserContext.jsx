@@ -1,11 +1,7 @@
 import { createContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../hooks/useAuth";
-import {
-  usersEndpointUrl,
-  userEndpointUrl,
-  matchEndpointUrl,
-} from "../constants.js";
+import { usersEndpointUrl, matchEndpointUrl } from "../constants.js";
 
 const UserContext = createContext();
 
@@ -91,7 +87,7 @@ function UserProvider({ children }) {
       setIsLoading(true);
 
       const response = await fetch(
-        `${userEndpointUrl}/${userId === null ? decoded.id : userId}`
+        `${usersEndpointUrl}/${userId === null ? decoded.id : userId}`
       );
       const responseData = await response.json();
       setIsLoading(false);
@@ -112,7 +108,7 @@ function UserProvider({ children }) {
     try {
       setIsLoading(true);
 
-      const response = await fetch(`${userEndpointUrl}/${decoded.id}`, {
+      const response = await fetch(`${usersEndpointUrl}/${decoded.id}`, {
         method: "DELETE",
         headers: {
           "Content-type": "application/json",
@@ -138,7 +134,7 @@ function UserProvider({ children }) {
       setPasswordChangeIsLoading(true);
 
       const response = await fetch(
-        `${userEndpointUrl}/${decoded.id}/password`,
+        `${usersEndpointUrl}/${decoded.id}/password`,
         {
           method: "PATCH",
           headers: {
@@ -167,7 +163,7 @@ function UserProvider({ children }) {
   const likeUser = async (likedUserId) => {
     try {
       const response = await fetch(
-        `${userEndpointUrl}/${decoded.id}/${likedUserId}/like`,
+        `${usersEndpointUrl}/${decoded.id}/${likedUserId}/like`,
         {
           method: "PATCH",
           headers: {
@@ -184,7 +180,7 @@ function UserProvider({ children }) {
   const dislikeUser = async (dislikedUserId) => {
     try {
       const response = await fetch(
-        `${userEndpointUrl}/${decoded.id}/${dislikedUserId}/dislike`,
+        `${usersEndpointUrl}/${decoded.id}/${dislikedUserId}/dislike`,
         {
           method: "PATCH",
           headers: {
@@ -202,7 +198,7 @@ function UserProvider({ children }) {
     try {
       setIsLoading(true);
 
-      const response = await fetch(`${userEndpointUrl}/${decoded.id}/info`, {
+      const response = await fetch(`${usersEndpointUrl}/${decoded.id}/info`, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -223,7 +219,7 @@ function UserProvider({ children }) {
   const addMatch = async (userId, matchId) => {
     try {
       const response = await fetch(
-        `${userEndpointUrl}/${userId}/${matchId}/match`,
+        `${usersEndpointUrl}/${userId}/${matchId}/match`,
         {
           method: "PATCH",
           headers: {
