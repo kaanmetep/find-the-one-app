@@ -5,7 +5,7 @@ import {
   usersEndpointUrl,
   userEndpointUrl,
   matchEndpointUrl,
-} from "./constants.js";
+} from "../constants.js";
 
 const UserContext = createContext();
 
