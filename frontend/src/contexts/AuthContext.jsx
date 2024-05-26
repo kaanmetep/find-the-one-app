@@ -8,8 +8,8 @@ function AuthProvider({ children }) {
   const [signUpError, setSignUpError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currUser, setCurrUser] = useState({
-    currUserEmail: "kaanpmete@gmail.com",
-    currUserPassword: "123456",
+    currUserEmail: "",
+    currUserPassword: "",
   });
   const [newUser, setNewUser] = useState({
     email: "",

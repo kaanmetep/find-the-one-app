@@ -9,27 +9,7 @@ function Matches() {
   const [selectedUser, setSelectedUser] = useState(null);
   const { setMatchedText, matchedText } = useApp();
   const [deletedMatch, setDeletedMatch] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      let users;
-      const user = await handleUserData();
-      const matchesArr = user.matchedUsers;
-      const matchedIds = matchesArr?.map((match) => {
-        if (match.user1_id === user._id) {
-          return { matchId: match._id, matchedUser: match.user2_id };
-        }
-        return { matchId: match._id, matchedUser: match.user1_id };
-      });
-      setMatchInfo(matchedIds);
-      if (matchedIds.length > 0) {
-        users = await getUsersByIds(
-          matchedIds.map((match) => match.matchedUser)
-        );
-      }
-      setMatchedUsers(users);
-    };
-    fetchData();
-  }, [matchedText, deletedMatch]);
+  const [isLoadingMatches, setIsLoadingMatches] = useState(false);
   useEffect(() => {
     let timeoutId;
     if (matchedText !== "") {
@@ -39,6 +19,31 @@ function Matches() {
     }
     return () => clearTimeout(timeoutId);
   }, [matchedText]);
+  useEffect(() => {
+    const fetchData = async () => {
+      if (matchedText === "") {
+        setIsLoadingMatches(true);
+        let users;
+        const user = await handleUserData();
+        const matchesArr = user.matchedUsers;
+        const matchedIds = matchesArr?.map((match) => {
+          if (match.user1_id === user._id) {
+            return { matchId: match._id, matchedUser: match.user2_id };
+          }
+          return { matchId: match._id, matchedUser: match.user1_id };
+        });
+        setMatchInfo(matchedIds);
+        if (matchedIds.length > 0) {
+          users = await getUsersByIds(
+            matchedIds.map((match) => match.matchedUser)
+          );
+        }
+        setIsLoadingMatches(false);
+        setMatchedUsers(users);
+      }
+    };
+    fetchData();
+  }, [matchedText, deletedMatch]);
 
   return (
     <div>
@@ -88,13 +93,19 @@ function Matches() {
         </div>
       )}
       <ul className="mt-6 flex flex-col gap-6 ">
-        {matchedUsers?.map((match) => (
-          <Match
-            matchObj={match}
-            key={match.matchId}
-            setSelectedUser={setSelectedUser}
-          />
-        ))}
+        {isLoadingMatches ? (
+          <p className="text-center text-red-400 font-semibold italic">
+            Matches are loading...
+          </p>
+        ) : (
+          matchedUsers?.map((match) => (
+            <Match
+              matchObj={match}
+              key={match.matchId}
+              setSelectedUser={setSelectedUser}
+            />
+          ))
+        )}
       </ul>
       {selectedUser && (
         <UserInfoCard

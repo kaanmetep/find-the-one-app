@@ -25,7 +25,6 @@ function UserProvider({ children }) {
 
   const filterUsersByAge = async (data) => {
     try {
-      console.log(userData.data);
       setIsLoadingUsers(true);
       const response = await fetch(
         `${usersEndpointUrl}?personelDetails.genderIdentity=${userData.data.personelDetails.genderInterest}&excludeId=${userData.data._id}&age=${data.min}-${data.max}`

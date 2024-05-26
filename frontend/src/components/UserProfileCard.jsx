@@ -64,21 +64,19 @@ function UserProfileCard() {
     if (name === "right") {
       await likeUser(users[currentIndex]._id);
       if (users[currentIndex].likedUsers.includes(userData.data._id)) {
-        console.log("its a match!!!!!!!!!!!!!!!!!!!");
-        setMatchedText("ITS A MATCH !!!");
         const matchId = await createMatch({
           user1_id: userData.data._id,
           user2_id: users[currentIndex]._id,
           matchedAt: Date.now(),
           status: true,
         });
-        addMatch(userData.data._id, matchId);
+        await addMatch(userData.data._id, matchId);
+        setMatchedText("ITS A MATCH !!!");
         addMatch(users[currentIndex]._id, matchId);
       }
     }
     if (name === "left") {
       await dislikeUser(users[currentIndex]._id);
-      console.log(userData);
     }
   };
 
@@ -164,13 +162,13 @@ function UserProfileCard() {
         >
           X
         </button>
-        <button
+        {/* <button
           onClick={() => goBack()}
           disabled={true}
-          className="bg-gray-400 text-white py-1 px-3 rounded-full"
+          className="bg-gray-400 text-white py-1 px-3 rounded-full "
         >
           Undo
-        </button>
+        </button> */}
         <button
           onClick={() => swipe("right")}
           className={`bg-black text-white w-8 h-8 rounded-full ${
