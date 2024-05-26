@@ -5,7 +5,14 @@ const cors = require("cors");
 dotenv.config({ path: "../config.env" });
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
