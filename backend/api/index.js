@@ -13,6 +13,7 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
+app.options("*", cors());
 app.use(express.json());
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
