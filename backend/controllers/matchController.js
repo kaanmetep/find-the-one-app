@@ -15,7 +15,7 @@ exports.deleteMatch = async (req, res) => {
     if (!match) {
       return res.status(404).json({ error: "Match not found." });
     }
-    console.log("match deleted successfully.");
+    res.status(200).json({ data: "match is deleted succesfully." });
   } catch (err) {
     res.status(401).json({ message: "you couldnt delete the match." });
   }
