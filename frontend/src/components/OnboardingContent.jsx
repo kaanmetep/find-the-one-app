@@ -1,9 +1,10 @@
-import InputElement from "./InputElement";
-import Button from "../components/Button";
-import { useApp } from "../hooks/useApp";
-import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import InputElement from "./InputElement";
+import Button from "../components/Button";
+import Spinner from "./Spinner";
+import { useApp } from "../hooks/useApp";
+import { useAuth } from "../hooks/useAuth";
 function OnboardingContent() {
   const {
     newUser,
@@ -144,17 +145,21 @@ function OnboardingContent() {
             )}
           </div>
           <div className="mt-1">
-            <Button
-              bgcolor="bg-gradient-to-r from-red-200 to-red-500 "
-              textcolor="text-white"
-              onClick={(e) => {
-                e.preventDefault();
-                signup();
-              }}
-              disabled={isLoading}
-            >
-              Submit
-            </Button>
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              <Button
+                bgcolor="bg-gradient-to-r from-red-200 to-red-500 "
+                textcolor="text-white"
+                onClick={(e) => {
+                  e.preventDefault();
+                  signup();
+                }}
+                disabled={isLoading}
+              >
+                Submit
+              </Button>
+            )}
 
             <button
               className="mt-6 border-b-2 border-b-black hover:text-slate-400 hover:border-b-transparent text-sm italic block"

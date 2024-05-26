@@ -6,10 +6,12 @@ const userSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: [true, "You must have a first name."],
+      lowercase: true,
     },
     lastName: {
       type: String,
       required: [true, "You must have a last name."],
+      lowercase: true,
     },
     email: {
       type: String,
@@ -64,10 +66,11 @@ const userSchema = new mongoose.Schema(
       about: {
         type: String,
         required: [true, "Please provide some information about yourself."],
+        lowercase: true,
         minlength: [3, "Tell us a little bit more of yourself."],
         maxlength: [
-          20,
-          "Please don't use more than 20 words to tell about yourself!",
+          25,
+          "Please don't use more than 25 letters to tell about yourself!",
         ],
       },
       instagramUsername: {
