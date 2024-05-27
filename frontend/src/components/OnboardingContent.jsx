@@ -1,19 +1,37 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import InputElement from "./InputElement";
 import Button from "../components/Button";
 import Spinner from "./Spinner";
 import { useApp } from "../hooks/useApp";
 import { useAuth } from "../hooks/useAuth";
+import { resizeFile, dataURItoBlob } from "../utils";
 function OnboardingContent() {
-  const {
-    newUser,
-    onHandleSetNewUser,
-    signup,
-    signUpError,
-    isAuthenticated,
-    isLoading,
-  } = useAuth();
+  const [newUser, setNewUser] = useState({
+    email: "",
+    hashedPassword: "",
+    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    birthDate: "",
+    gender: "man",
+    genderPreference: "woman",
+    about: "",
+    instagramUsername: "",
+    photo: null,
+  });
+  const handleSetNewUser = (e) => {
+    const { name, value } = e.target;
+    if (name === "photo") {
+      handleImage(name, value, e);
+    } else {
+      setNewUser({
+        ...newUser,
+        [name]: value,
+      });
+    }
+  };
+  const { signup, signUpError, isAuthenticated, isLoading } = useAuth();
   const { onSetShowLogInPopUp } = useApp();
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,6 +40,16 @@ function OnboardingContent() {
       onSetShowLogInPopUp(false);
     }
   }, [isAuthenticated, navigate, onSetShowLogInPopUp]);
+  const handleImage = async (name, value, e) => {
+    let file = e.target.files[0];
+    const resizedImage = await resizeFile(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setNewUser({ ...newUser, [name]: e.target.result });
+      console.log(e.target.result);
+    };
+    reader.readAsDataURL(dataURItoBlob(resizedImage));
+  };
   return (
     <div className="container mx-auto mt-12 px-6 lg:px-2 mb-16">
       <h2 className="text-2xl italic uppercase font-bold text-center">
@@ -33,7 +61,7 @@ function OnboardingContent() {
             <label htmlFor="email">E-mail</label>
             <InputElement
               value={newUser.email}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
               name="email"
             />
           </div>
@@ -43,7 +71,7 @@ function OnboardingContent() {
               type="password"
               name="hashedPassword"
               value={newUser.hashedPassword}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col items-start  gap-2">
@@ -52,7 +80,7 @@ function OnboardingContent() {
               type="password"
               name="confirmPassword"
               value={newUser.confirmPassword}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col items-start  gap-2">
@@ -60,7 +88,7 @@ function OnboardingContent() {
             <InputElement
               name="firstName"
               value={newUser.firstName}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col items-start  gap-2">
@@ -68,7 +96,7 @@ function OnboardingContent() {
             <InputElement
               name="lastName"
               value={newUser.lastName}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col items-start  gap-2">
@@ -77,7 +105,7 @@ function OnboardingContent() {
               type="date"
               name="birthDate"
               value={newUser.birthDate}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
         </div>
@@ -89,7 +117,7 @@ function OnboardingContent() {
               className="shadow-lg border-2 border-red-100 px-2 rounded-md "
               name="gender"
               value={newUser.gender}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             >
               <option value="man">Man</option>
               <option value="woman">Woman</option>
@@ -102,7 +130,7 @@ function OnboardingContent() {
               className="shadow-lg border-2 border-red-100 px-2 rounded-md "
               name="genderPreference"
               value={newUser.genderPreference}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             >
               <option value="man">Man</option>
               <option value="woman">Woman</option>
@@ -115,7 +143,7 @@ function OnboardingContent() {
               py={4}
               name="about"
               value={newUser.about}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col items-start  gap-2">
@@ -123,7 +151,7 @@ function OnboardingContent() {
             <InputElement
               name="instagramUsername"
               value={newUser.instagramUsername}
-              onChange={onHandleSetNewUser}
+              onChange={handleSetNewUser}
             />
           </div>
           <div className="flex flex-col gap-8">
@@ -131,7 +159,7 @@ function OnboardingContent() {
               <label htmlFor="lastname">Photo</label>
               <InputElement
                 name="photo"
-                onChange={onHandleSetNewUser}
+                onChange={handleSetNewUser}
                 type="file"
                 accept="image/*"
               />
