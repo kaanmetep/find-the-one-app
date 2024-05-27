@@ -45,7 +45,7 @@ function ChangePasswordPopUp({ onSetChangePasswordPopUp }) {
           />
         </div>
         <p className="text-red-600 uppercase italic text-semibold">
-          {response}
+          {response && response}
         </p>
         {passwordChangeIsLoading ? (
           <Spinner />

@@ -148,7 +148,7 @@ function UserProvider({ children }) {
       const responseData = await response.json();
       setPasswordChangeIsLoading(false);
       if (response.ok) {
-        setResponse(responseData.data);
+        setResponse(responseData.message);
       } else {
         console.log(responseData);
         setError(true);

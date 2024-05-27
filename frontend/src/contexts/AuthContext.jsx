@@ -50,7 +50,6 @@ function AuthProvider({ children }) {
         setIsAuthenticated(true);
         setLoginError("");
       } else {
-        console.log(responseData);
         setLoginError(responseData.result);
       }
     } catch (err) {
