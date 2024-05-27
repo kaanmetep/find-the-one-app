@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputElement from "./InputElement";
 import SectionHeading from "./SectionHeading";
@@ -8,15 +8,16 @@ import { useAuth } from "../hooks/useAuth";
 import Spinner from "./Spinner";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 function LogInPopUp() {
+  const [currUser, setCurrUser] = useState({
+    currUserEmail: "",
+    currUserPassword: "",
+  });
+  const handleCurrUser = (e) => {
+    const { name, value } = e.target;
+    setCurrUser({ ...currUser, [name]: value });
+  };
   const { onSetShowLogInPopUp } = useApp();
-  const {
-    currUser,
-    onHandleCurrUser,
-    login,
-    isAuthenticated,
-    loginError,
-    isLoading,
-  } = useAuth();
+  const { login, isAuthenticated, loginError, isLoading } = useAuth();
   const navigate = useNavigate();
   useEffect(() => {
     if (isAuthenticated) {
@@ -39,7 +40,7 @@ function LogInPopUp() {
               placeholder="Enter your e-mail"
               name="currUserEmail"
               value={currUser.currUserEmail}
-              onChange={onHandleCurrUser}
+              onChange={handleCurrUser}
             />
           </div>
           <div className="grid sm:grid-cols-[1fr,3fr] grid-cols-[1fr,2fr] items-center mb-2 gap-2 ">
@@ -48,7 +49,7 @@ function LogInPopUp() {
               type="password"
               placeholder="Enter your passsword"
               value={currUser.currUserPassword}
-              onChange={onHandleCurrUser}
+              onChange={handleCurrUser}
               name="currUserPassword"
             />
           </div>
@@ -57,7 +58,7 @@ function LogInPopUp() {
             textcolor="text-white"
             onClick={(e) => {
               e.preventDefault();
-              login();
+              login(currUser);
             }}
           >
             Log in

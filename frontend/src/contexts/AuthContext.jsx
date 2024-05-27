@@ -6,15 +6,7 @@ function AuthProvider({ children }) {
   const [loginError, setLoginError] = useState("");
   const [signUpError, setSignUpError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [currUser, setCurrUser] = useState({
-    currUserEmail: "",
-    currUserPassword: "",
-  });
 
-  const handleCurrUser = (e) => {
-    const { name, value } = e.target;
-    setCurrUser({ ...currUser, [name]: value });
-  };
   const signup = async (newUser) => {
     try {
       setIsLoading(true);
@@ -41,7 +33,7 @@ function AuthProvider({ children }) {
       setIsLoading(false);
     }
   };
-  const login = async () => {
+  const login = async (currUser) => {
     try {
       setIsLoading(true);
       const response = await fetch(`${authEndpointUrl}/login`, {
@@ -74,8 +66,6 @@ function AuthProvider({ children }) {
   return (
     <AuthContext.Provider
       value={{
-        currUser,
-        onHandleCurrUser: handleCurrUser,
         signup,
         isAuthenticated,
         logout,

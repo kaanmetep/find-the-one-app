@@ -181,7 +181,7 @@ function OnboardingContent() {
                 textcolor="text-white"
                 onClick={(e) => {
                   e.preventDefault();
-                  signup();
+                  signup(newUser);
                 }}
                 disabled={isLoading}
               >
