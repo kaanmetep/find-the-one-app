@@ -33,10 +33,12 @@ exports.signup = async (req, res) => {
     if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((el) => el.message);
       if (errors.length >= 4)
-        res.status(400).json({ result: "Please fill all the required areas." });
+        return res
+          .status(400)
+          .json({ result: "Please fill all the required areas." });
       return res.status(400).json({ result: errors.join(" ") });
     }
-    if (err.code && err.code === 11000) {
+    if (err.code === 11000) {
       const field = Object.keys(err.keyValue)[0];
       return res
         .status(400)
