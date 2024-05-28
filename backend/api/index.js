@@ -13,7 +13,12 @@ const authRoutes = require("../routes/authRoutes");
 const matchRoutes = require("../routes/matchRoutes");
 
 mongoose
-  .connect(process.env.DATABASE)
+  .connect(process.env.DATABASE, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    autoIndex: true,
+  })
   .then(console.log("db connection is succesfull"));
 
 app.get("/", (req, res) => {

@@ -46,7 +46,6 @@ function OnboardingContent() {
     const reader = new FileReader();
     reader.onload = (e) => {
       setNewUser({ ...newUser, [name]: e.target.result });
-      console.log(e.target.result);
     };
     reader.readAsDataURL(dataURItoBlob(resizedImage));
   };
