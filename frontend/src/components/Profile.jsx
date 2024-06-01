@@ -91,7 +91,7 @@ function Profile() {
               <img
                 src={currUserInfo.image}
                 alt="Profile Picture"
-                className="w-32 rounded-lg"
+                className="w-32 h-32 rounded-lg"
               />
               <div className="flex flex-col gap-2 justify-center">
                 <label htmlFor="" className="text-center italic">
